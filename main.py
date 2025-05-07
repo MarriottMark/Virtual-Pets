@@ -1,6 +1,64 @@
 class Pet():
-    def __init__(self):
-        self.dead = False
+   def __init__(self, name, hunger = 5, age= 0, boredom = 3, sleepiness = 3):
+       self.dead = False
+       self.name = name
+       self.hunger = hunger
+       self.boredom = boredom
+       self.sleepiness = sleepiness
+       self.age = age
+
+
+   def feed(self):
+       self.hunger -=3
+       if self.hunger <0:
+           self.hunger = 0
+
+
+
+
+   def wait(self):
+       self.age += 1
+       self.sleepiness += 1
+       self.hunger += 1
+       self.boredam += 1
+
+
+
+
+
+
+   def sleep(self):
+       self.sleepiness -=5
+       if self.sleepiness <0:
+           self.sleepiness = 0
+
+
+
+
+   def play(self):
+       self.boredom -=3
+       if self.boredom <0:
+           self.boredom = 0
+
+
+   def is_dead(self):
+       if self.sleepiness >= 10:
+           self.dead = True
+       if self.boredom >= 10:
+           self.dead = True
+       if self.hunger >= 10:
+           self.dead = True
+       if self.hunger >= 15:
+           self.dead = True
+
+
+
+
+James = Pet("Sturling")
+action = input(" ")
+while action != '':
+   if action == "play":
+       Pet.play()
 
 ####----Task 1----####
 #Set up your pet with the following attributes:
