@@ -9,6 +9,8 @@ class Pet():
 
 
    def feed(self):
+       if Pet.dead == True:
+           return
        self.hunger -=3
        if self.hunger <0:
            self.hunger = 0
@@ -17,6 +19,8 @@ class Pet():
 
 
    def wait(self):
+       if Pet.dead == True:
+           return
        self.age += 1
        self.sleepiness += 1
        self.hunger += 1
@@ -28,6 +32,8 @@ class Pet():
 
 
    def sleep(self):
+       if Pet.dead == True:
+           return
        self.sleepiness -=5
        if self.sleepiness <0:
            self.sleepiness = 0
@@ -36,6 +42,8 @@ class Pet():
 
 
    def play(self):
+       if Pet.dead == True:
+           return
        self.boredom -=3
        if self.boredom <0:
            self.boredom = 0
