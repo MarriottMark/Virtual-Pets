@@ -6,10 +6,11 @@ class Pet():
        self.boredom = boredom
        self.sleepiness = sleepiness
        self.age = age
+  
 
 
    def feed(self):
-       if Pet.dead == True:
+       if self.dead == True:
            return
        self.hunger -=3
        if self.hunger <0:
@@ -19,12 +20,12 @@ class Pet():
 
 
    def wait(self):
-       if Pet.dead == True:
+       if self.dead == True:
            return
        self.age += 1
        self.sleepiness += 1
        self.hunger += 1
-       self.boredam += 1
+       self.boredom += 1
 
 
 
@@ -32,7 +33,7 @@ class Pet():
 
 
    def sleep(self):
-       if Pet.dead == True:
+       if self.dead == True:
            return
        self.sleepiness -=5
        if self.sleepiness <0:
@@ -42,7 +43,7 @@ class Pet():
 
 
    def play(self):
-       if Pet.dead == True:
+       if self.dead == True:
            return
        self.boredom -=3
        if self.boredom <0:
@@ -58,15 +59,56 @@ class Pet():
            self.dead = True
        if self.hunger >= 15:
            self.dead = True
+   def __str__(self):
+    return (f"{self.name} - Age: {self.age}, Hunger: {self.hunger}, "
+            f"Boredom: {self.boredom}, Sleepiness: {self.sleepiness}")
+   
+   def check_death(self):
+    if self.sleepiness >= 10 or self.boredom >= 10 or self.hunger >= 10 or self.age >= 15:
+        return True
+    return False
+
+gravestone = '''
+     _______
+    /       \\
+   /         \\
+  |           |
+  |   RIP     |
+  |           |
+  |___________|
+'''
 
 
+def main():
+    pet = Pet(input("what is the name of your pet: "))
+
+    while not pet.check_death():
+        print(pet)
+        action = input("Choose an action (feed/play/sleep/wait/quit): ").lower()
+
+        if action == "feed":
+            pet.feed()
+        elif action == "play":
+            pet.play()
+        elif action == "sleep":
+            pet.sleep()
+        elif action == "wait":
+            pet.wait()
+        elif action == "quit":
+            print("Exiting the game.")
+            break
+        else:
+            print("Invalid action. Please choose again.")
+
+    if pet.check_death():
+        print(f"{pet.name} has died!")
+        print(gravestone)
+        return
+
+if __name__ == "__main__":
+    main()
 
 
-James = Pet("Sturling")
-action = input(" ")
-while action != '':
-   if action == "play":
-       Pet.play()
 
 ####----Task 1----####
 #Set up your pet with the following attributes:
